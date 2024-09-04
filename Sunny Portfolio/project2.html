@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>BMI CALCULATOR</title>
+    <!--    <script src="assets/BMI.js"></script>-->
+    <!--    <link rel="stylesheet" href="assets/bmi.css">-->
+    <script>
+        function CalculateBmi(){
+            var height= document.getElementById("height").value
+            var weight= document.getElementById("weight").value
+            var image  = document.getElementById('resultImage')
+            var height_mtr= height*0.01;
+            var bmi=(weight/(height_mtr*height_mtr));
+
+            document.getElementById("result").innerHTML= bmi.toFixed(2)
+
+            if (bmi <= 18){
+                image.src = 'assets/style/under.png'
+                image.alt = 'Under Weight'
+            }else if ( bmi > 18  && bmi < 24 ){
+                image.src = 'assets/style/normal.png'
+                image.alt = 'Normal'
+            }else if ( bmi >= 25  && bmi <= 29 ){
+                image.src = 'assets/style/over.png'
+                image.alt = 'Over weight'
+            }else if ( bmi > 29 ){
+                image.src = 'assets/style/obese.png'
+                image.alt = 'obese Weight'
+            }
+
+        }
+    </script>
+</head>
+<body>
+<center>
+    <div id="container">
+        <div id="heading">
+            BMI Calculator
+        </div>
+        <div  id="input-div">
+            <label  class="data-input-heading">Enter Your Height in <b>(CM)</b> </label><br><br>
+            <input type="number" id="height" placeholder="ENTER YOUR HEIGHT" class="data-input">
+            <br><br>
+            <label  class="data-input-heading">Enter Your Weight In <b>(KG)</b> </label><br><br>
+            <input type="number" id="weight" placeholder="ENTER YOUR WEIGHT" class="data-input">
+            <br>
+            <button onclick="CalculateBmi()"  type="button"id="calculate-button">CALCULATE</button>
+            <br>
+            <img src="assets/style/default.png" alt="" srcset="" id="resultImage" height="150px">
+            <div id="result-box" style="margin-top: 15px">
+                <div id="result-heading">Your BMI in kg/m<sup>2</sup> is </div><br>
+                <p id="result"></p>
+            </div>
+
+        </div>
+    </div>
+</center>
+<style>
+    *{
+        font-family: "Open Sans", sans-serif;
+    }
+    #container{
+        height: 110vh;
+        width: 100%;
+        border: 2px solid black;
+        background-size: cover;
+    }
+    #heading{
+        width: 100%;
+        height: 60px;
+        font-size: 40px;
+        color: white;
+        background-color: #3c787e;
+        font-weight: 600;
+    }
+    .data-input{
+        height: 40px;
+        width: 500px;
+        background-color: lightyellow;
+        border-radius: 10px;
+    }
+    .data-input-heading{
+        font-size: 25px;
+    }
+    #input-div{
+        margin-top: 50px;
+    }
+    #result-box{
+        width: 350px;
+        height: 120px;
+        margin-top: 60px;
+    }
+    #result-heading{
+        font-size: 20px;
+        font-weight: 500;
+    }
+    #result{
+        width: 300px;
+        height: 30px;
+        margin-top: -10px;
+        border: 2px solid  gray;
+        border-radius: 10px;
+    }
+    #calculate-button{
+        width: 200px;
+        height: 40px;
+        background-color: #3c787e;
+        color: white;
+        font-size: 20px;
+        letter-spacing: 3px;
+        margin-top: 30px;
+        font-weight: 500;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .data-input:hover{
+        box-shadow: 1px 1px 10px black;
+    }
+</style>
+</body>
+</html>

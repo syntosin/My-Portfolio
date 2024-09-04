@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style/calculator.css">
+    <script src="assets/style/calculator.js" defer></script>
+    <title>Calculator</title>
+    <script>
+        let display = document.getElementById('display')
+        let buttons = Array.from(document.getElementsByClassName('btn'))
+
+        buttons.map((button)=>{
+            button.addEventListener('click', (e)=>{
+                switch(e.target.innerText){
+                    case 'Clear':
+                        display.innerText = '';
+                        break;
+                    case '=':
+                        try{
+                            display.innerText = eval(display.innerText);
+                        } catch {
+                            display.innerText = "Error"
+                        }
+                        break;
+                    case 'Del':
+                        if (display.innerText){
+                            display.innerText = display.innerText.slice(0, -1);
+                        }
+                        break;
+                    default:
+                        display.innerText += e.target.innerText;
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<center>
+    <div class="App">
+        <div class="display" id="display"></div>
+
+        <div class="buttons">
+            <button id="1" class="btn">1</button>
+            <button id="2" class="btn">2</button>
+            <button id="3" class="btn">3</button>
+            <button id="/" class="btn highlight">/</button>
+            <button id="4" class="btn">4</button>
+            <button id="5" class="btn">5</button>
+            <button id="6" class="btn">6</button>
+            <button id="*" class="btn highlight">*</button>
+            <button id="7" class="btn">7</button>
+            <button id="8" class="btn">8</button>
+            <button id="9" class="btn">9</button>
+            <button id="+" class="btn highlight">+</button>
+            <button id="0" class="btn">0</button>
+            <button id="." class="btn">.</button>
+            <button class="btn">=</button>
+            <button id="-" class="btn highlight">-</button>
+            <button class="btn highlight Clear">Clear</button>
+            <button class="btn highlight Del">Del</button>
+        </div>
+    </div>
+</center>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+    }
+
+    .App {
+        text-align: center;
+        background-color: black;
+        width: 256px;
+        border: black 2px solid;
+    }
+
+    .buttons{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-auto-rows: minmax(60px, auto);
+    }
+
+    .buttons button{
+        background-color: skyblue;
+        color: white;
+        margin: 2px;
+        border-radius: 3px;
+        border: none;
+    }
+
+    .Clear{
+        grid-column: 1/span 2;
+    }
+
+    .Del{
+        grid-column: 3/span 2;
+    }
+
+    .highlight{
+        background-color: rgb(15, 80, 153) !important;
+    }
+
+    .display{
+        border: none;
+        background-color: black;
+        color: white;
+        width: 250px;
+        height: 50px;
+        text-align: right;
+    }
+
+</style>
+</body>
+</html>
